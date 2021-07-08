@@ -15,17 +15,14 @@ export default {
   data() {
     return {
       titulo: 'AluraPic',
-      fotos: [
-        {
-          url: 'https://s2.glbimg.com/slaVZgTF5Nz8RWqGrHRJf0H1PMQ=/0x0:800x450/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/U/e/NTegqdSe6SoBAoQDjKZA/cachorro.jpg',
-          titulo: 'cachorro'
-        },
-        {
-          url: 'https://s2.glbimg.com/slaVZgTF5Nz8RWqGrHRJf0H1PMQ=/0x0:800x450/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/U/e/NTegqdSe6SoBAoQDjKZA/cachorro.jpg',
-          titulo: 'cachorão'
-        }
-      ]
+      fotos: []
     }
+  },
+  created() {
+    this.$http.get('http://localhost:3000/v1/fotos')
+      .then(response => response.json())
+      .then(fotos => this.fotos = fotos)
+      .catch(error => console.log(error));
   },
 }
 </script>
