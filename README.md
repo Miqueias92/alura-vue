@@ -2,7 +2,7 @@
 
 Cursos de vue da alura
 
-# api node usada pelo front
+## api node usada pelo front
 
 ``` bash
 # executar api em node que será consumida pelo frontend
