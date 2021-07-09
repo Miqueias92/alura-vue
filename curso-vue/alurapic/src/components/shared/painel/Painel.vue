@@ -13,7 +13,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* estilo do painel */
 .painel {
   padding: 0 auto;
@@ -36,5 +36,7 @@ export default {
   text-transform: uppercase;
 }
 
-
+* {
+  box-shadow: 5px 5px 5px;
+}
 </style>
