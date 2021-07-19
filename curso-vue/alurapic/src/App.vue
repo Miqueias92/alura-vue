@@ -1,9 +1,12 @@
 <template>
   <div class="corpo">
     <h1 class="centralizado">{{ titulo }}</h1>
+    
+    <input @input="filtro = $event.target.value" type="search" class="filtro" placeholder="filtre por parte do título"/>
+
     <ul class="lista-fotos">
       <li class="lista-fotos-item" 
-          v-for="foto of fotos" :key="foto.titulo">
+          v-for="foto of fotosComFltro" :key="foto.titulo">
           <meu-painel :titulo="foto.titulo">
             <!-- foi adicionada a tag slot no painel, dessa for as imagens são exibidas -->
             <img class="imagem-responsiva" v-bind:key="foto.titulo" v-bind:src="foto.url" :alt="foto.titulo"/>
@@ -25,6 +28,7 @@ export default {
     return {
       titulo: "AluraPic",
       fotos: [],
+      filtro: '',
     };
   },
   methods: {
@@ -32,6 +36,18 @@ export default {
       return foto.titulo
     }
   },
+
+  computed: {
+    fotosComFltro() {
+      if (this.filtro) {
+        let exp = new RegExp(this.filtro.trim(), 'i');
+        return this.fotos.filter(foto => exp.test(foto.titulo));
+      }else {
+        return this.fotos;
+      }
+    }
+  },
+
   created() {
     this.$http
       .get("http://localhost:3000/v1/fotos")
@@ -62,6 +78,11 @@ export default {
   }
 
   .imagem-responsiva {
+    width: 100%;
+  }
+
+  .filtro {
+    display: block;
     width: 100%;
   }
 </style>
