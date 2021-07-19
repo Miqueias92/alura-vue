@@ -1,15 +1,23 @@
 <template>
   <div class="painel">
-    <h2 class="painel-titulo">{{ titulo }}</h2>
+    <h2 @dblclick="visivel = !visivel" class="painel-titulo">{{ titulo }}</h2>
     <!-- com o slot é possível exibir as imagens dentro do painel -->
     <!-- trocar slot por div para entender o funcionamento -->
-    <slot class="painel-conteudo"></slot>
+    <div v-show="visivel">
+      <slot class="painel-conteudo"></slot>
+    </div>
   </div>
 </template>
 
 <script>
 export default { 
-  props: ['titulo']
+  props: ['titulo'],
+  
+  data() {
+    return {
+      visivel: true   
+    }
+  },
 };
 </script>
 
