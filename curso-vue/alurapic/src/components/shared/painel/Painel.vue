@@ -3,9 +3,12 @@
     <h2 @dblclick="visivel = !visivel" class="painel-titulo">{{ titulo }}</h2>
     <!-- com o slot é possível exibir as imagens dentro do painel -->
     <!-- trocar slot por div para entender o funcionamento -->
-    <div v-show="visivel">
-      <slot class="painel-conteudo"></slot>
-    </div>
+
+    <transition name="painel-fade">
+      <div v-show="visivel">
+        <slot class="painel-conteudo"></slot>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -46,5 +49,13 @@ export default {
 
 * {
   box-shadow: 5px 5px 5px;
+}
+
+.painel-fade-enter, .painel-fade-leave-active {
+  opacity: 0;
+}
+
+.painel-fade-enter-active, .painel-fade-leave-active {
+  transition: opacity .4s;
 }
 </style>
