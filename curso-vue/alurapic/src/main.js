@@ -2,8 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 
 import VueResource from 'vue-resource';
+import vueRouter from 'vue-router';
 
 Vue.use(VueResource);
+Vue.use(vueRouter);
 
 new Vue({
   el: '#app',
