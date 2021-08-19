@@ -9,7 +9,7 @@
           v-for="foto of fotosComFltro" :key="foto.titulo">
           <meu-painel :titulo="foto.titulo">
             <!-- foi adicionada a tag slot no painel, dessa for as imagens são exibidas -->
-            <img class="imagem-responsiva" v-bind:key="foto.titulo" v-bind:src="foto.url" :alt="foto.titulo"/>
+            <imagem-responsiva :url="foto.url" :titulo="foto.titulo"/>
           </meu-painel>
       </li>
     </ul>
@@ -19,10 +19,12 @@
 <script>
 
 import Painel from './components/shared/painel/Painel';
+import ImagemReponsiva from './components/shared/imagem-responsiva/ImagemReponsiva';
 
 export default {
   components: {
     'meu-painel': Painel,
+    'imagem-responsiva': ImagemReponsiva,
   },
   data() {
     return {
@@ -77,10 +79,7 @@ export default {
     display: inline-block;
   }
 
-  .imagem-responsiva {
-    width: 100%;
-  }
-
+  
   .filtro {
     display: block;
     width: 100%;
